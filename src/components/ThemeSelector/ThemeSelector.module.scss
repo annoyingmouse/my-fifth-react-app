@@ -1,0 +1,32 @@
+.ThemeSelector {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  max-width: 1200px;
+  margin: 20px auto;
+  .ModeToggle {
+    margin-right: auto;
+    img {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      &.DarkMode {
+        filter: invert(100%);
+      }
+      &.LightMode {
+        filter: invert(20%);
+      }
+    } 
+  }
+  .ThemeButtons {
+    .ThemeButton {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      margin-left: 15px;
+      border-radius: 50%;
+    }
+  }
+  
+}

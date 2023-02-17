@@ -11,6 +11,14 @@
     border-radius: 4px;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
+    &.dark {
+      background: #555;
+      p,
+      h3,
+      div {
+        color: #e4e4e4;
+      }
+    }
     &:hover {
       transform: rotate(3deg);
     }

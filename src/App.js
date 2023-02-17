@@ -5,13 +5,17 @@ import { Create } from './pages/create/Create'
 import { Search } from './pages/search/Search'
 import { Recipe } from './pages/recipe/Recipe'
 import { NavBar } from './components/NavBar/NavBar'
+import { ThemeSelector } from './components/ThemeSelector/ThemeSelector'
+import { useTheme } from './hooks/useTheme'
 
 
 export const App = () => {
+  const { mode } = useTheme()
   return (
-    <div className={styles.App}>
+    <div className={`${styles.App} ${mode === 'dark' ? styles.dark : ''}`}>
       <BrowserRouter>
         <NavBar />
+        <ThemeSelector />
         <Routes>
           <Route path="/"
                  element={ <Home /> }/>
