@@ -1,3 +1,51 @@
 .Create {
-    
+  color: #555;
+  max-width: 480px;
+  margin: 60px auto;
+  label {
+    span {
+      display: block;
+      margin: 30px 0 10px;
+    }
+  }
+  p {
+    margin-top: 10px;
+    font-size: 0.8em;
+    em {
+      &::after {
+        content: ", ";
+      }
+      &:last-child {
+        &::after {
+          content: ".";
+        }
+      }
+      &:nth-last-child(2){
+        &::after {
+          content: " & ";
+        }
+      }
+    }
+  }
+  button {
+    display: block;
+    width: 120px;
+    font-size: 1em;
+    color: #fff;
+    padding: 8px 20px;
+    border: 0;
+    border-radius: 4px;
+    background-color: #58249C;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 20px auto;
+    text-align: center;
+  }
+  .ingredients {
+    display: flex;
+    align-items: center;
+    button {
+      margin: 0 0 0 10px;
+    }
+  }
 }
