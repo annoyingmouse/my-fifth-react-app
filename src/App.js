@@ -4,7 +4,7 @@ import { Home } from './pages/home/Home'
 import { Create } from './pages/create/Create'
 import { Search } from './pages/search/Search'
 import { Recipe } from './pages/recipe/Recipe'
-import { NavBar } from './components/NavBar'
+import { NavBar } from './components/NavBar/NavBar'
 
 
 export const App = () => {

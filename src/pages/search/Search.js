@@ -2,7 +2,7 @@ import style from './Search.module.scss'
 import { useFetch } from '../../hooks/useFetch'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { RecipeList } from '../../components/RecipeList'
+import { RecipeList } from '../../components/RecipeList/RecipeList'
 
 
 export const Search = () => {
