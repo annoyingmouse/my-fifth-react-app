@@ -1,6 +1,8 @@
 import styles from './RecipeList.module.scss'
+import { projectFirestore } from '../../firebase/config'
 import { Link } from 'react-router-dom'
 import { useTheme } from '../../hooks/useTheme'
+import deleteIcon from '../../assets/deleteIcon.svg'
 
 export const RecipeList = ({recipes}) => {
   const { mode } = useTheme()
@@ -9,6 +11,10 @@ export const RecipeList = ({recipes}) => {
     return (
       <div className="error">No recipes to load...</div>
     )
+  }
+
+  const handleDelete = id => {
+    projectFirestore.collection('recipes').doc(id).delete()
   }
 
   return (
@@ -20,6 +26,11 @@ export const RecipeList = ({recipes}) => {
           <p>{recipe.cookingTime} to make.</p>
           <div>{recipe.method.substring(0, 100)}...</div>
           <Link to={`/recipes/${recipe.id}`}>Cook this</Link>
+          {/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+          <img src={deleteIcon}
+               alt="delete"
+               className={styles.delete}
+               onClick={() => handleDelete(recipe.id)}/>
         </div>
       ))}
     </div>

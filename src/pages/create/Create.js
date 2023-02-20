@@ -1,10 +1,12 @@
 import styles from './Create.module.scss'
-import { useRef, useState, useEffect } from 'react'
-import { useFetch } from '../../hooks/useFetch'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { projectFirestore } from '../../firebase/config'
+import { useTheme } from '../../hooks/useTheme'
 
 
 export const Create = () => {
+  const { mode } = useTheme()
   const [title, setTitle] = useState('')
   const [cookingTime, setCookingTime] = useState('')
   const [newIngredient, setNewIngredient] = useState('')
@@ -12,20 +14,17 @@ export const Create = () => {
   const [method, setMethod] = useState('')
   const ingredientInput = useRef(null)
 
-  const { postData, data, error } = useFetch('http://localhost:3000/recipes', 'POST')
-
   const navigate = useNavigate()
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    postData({ title, cookingTime: `${cookingTime} minutes`, ingredients, method })
-  }
-
-  useEffect(() => {
-    if(data) {
+    try{
+      await projectFirestore.collection('recipes').add({ title, cookingTime: `${cookingTime} minutes`, ingredients, method })
       navigate('/')
+    } catch(err) {
+      console.log(err.message)
     }
-  }, [data, navigate])
+  }
 
   const handleAdd = e => {
     e.preventDefault()
@@ -38,8 +37,8 @@ export const Create = () => {
   }
 
   return (
-    <div className={styles.Create}>
-      <h1 className="page-title">Create a new recipe</h1>
+    <div className={`${styles.Create} ${mode === 'dark' ? styles.dark : ''}`}>
+      <h1 className={styles['page-title']}>Create a new recipe</h1>
       <form onSubmit={handleSubmit}>
         <label>
           <span>Recipe title:</span>

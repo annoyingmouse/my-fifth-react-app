@@ -48,4 +48,10 @@
       margin: 0 0 0 10px;
     }
   }
+  &.dark {
+    color: #e4e4e4;
+    .page-title {
+      color: #e4e4e4;
+    }
+  }
 }
