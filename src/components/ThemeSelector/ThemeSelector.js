@@ -1,31 +1,32 @@
 import styles from './ThemeSelector.module.scss'
+import { useState } from 'react'
 import { useTheme } from '../../hooks/useTheme'
-import modeIcon from '../../assets/modeIcon.svg'
+import { Within } from "@theme-toggles/react"
 
 const themeColors = ['#58249C', '#249C6B', '#B70233']
 
 export const ThemeSelector = () => {
   const { mode, setColor, setMode } = useTheme()
+  const [isToggled, setIsToggled] = useState(mode !== 'dark')
 
-  const toggleMode = () => {
+  const setToggle = () => {
+    setIsToggled(!isToggled)
     setMode(mode === 'dark' ? 'light' : 'dark')
   }
 
   return (
     <div className={styles.ThemeSelector}>
       <div className={styles.ModeToggle}>
-        {/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-        <img src={modeIcon}
-             onClick={toggleMode} 
-             className={mode === 'dark' ? styles.DarkMode : styles.LightMode}
-             alt="mode icon"/>
+        <Within toggled={isToggled}
+                toggle={setToggle}
+                className={mode === 'dark' ? styles.LightMode : styles.DarkMode}/>
       </div>
       <div className={styles.ThemeButtons}>
         {themeColors.map(color => (
-          // rome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
           <div key={color}
                className={styles.ThemeButton}
                style={{ background: color }}
+               onKeyUp={() => setColor(color)}
                onClick={() => setColor(color)} />
         ))}
       </div>

@@ -7,6 +7,7 @@ import { Recipe } from './pages/recipe/Recipe'
 import { NavBar } from './components/NavBar/NavBar'
 import { ThemeSelector } from './components/ThemeSelector/ThemeSelector'
 import { useTheme } from './hooks/useTheme'
+import "@theme-toggles/react/css/Within.css"
 
 
 export const App = () => {
